@@ -1,0 +1,49 @@
+Sierra Changes
+
+1. Change data titles in Line 595 and 596
+
+writeLn(data_file, ['monkey_left', 'monkey_right', 'date', 'time', 'block', 'trial_number', 'trial_type','response_order', 'left_choice', 'right_choice', 'left_pellets', 'right_pellets', 'left_rt', 'right_rt'])
+
+2. Change .write() function in Line 547-552
+
+def write(self, file):
+        now = time.strftime('%H:%M:%S')
+        session_type = "joint"
+        time_taken = self.response_time()
+        data = [monkey[0], monkey[1], today, now, self.block, self.trial_number, 		self.trial_type[self.trial_within_block], self.response_order,
+                self.left_choice, self.right_choice, self.left_pellets, 			self.right_pellets]
+
+        
+        writeLn(file, data)
+
+
+3. Add local variables to track in the program (lines 157-161)
+
+	self.response_order = "X"
+        self.left_choice = 0
+        self.right_choice = 0
+        self.left_pellets = 0
+        self.right_pellets = 0
+
+4. Add self.write to line 433
+
+	self.write(data_file)
+
+5. Add self.response_order = to both right_icons() and left_icons() functions (lines 328 and 362)
+
+	self.response_order = "L"
+	self.response_order = "R"
+
+6. Add self.left_choice and self.right_choice to the draw_both_seelctions() function (line 380)
+	
+	self.left_choice = "Coop"
+        self.right_choice = "Coop"
+
+	self.left_choice = "Coop"
+        self.right_choice = "Defect"
+
+	self.left_choice = "Defect"
+        self.right_choice = "Defect"
+
+	self.left_choice = "Defect"
+        self.right_choice = "Coop"
